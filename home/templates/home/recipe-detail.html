@@ -1,0 +1,83 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Recipe Details{% endblock title %} 
+{% block content %}
+
+<div class="container col-xxl-8 px-4 py-5 min-vh-100">
+  <div>
+    <h2><i>{{recipe.name}}</i></h2>
+    <div class="row flex-lg-row-reverse align-items-center g-5 pt-4">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img
+          style="border-radius: 10px"
+          src="{{ recipe.thumbnail.url }}"
+          class="d-block mx-lg-auto img-fluid"
+          alt="Image"
+          width="700"
+          height="500"
+          loading="lazy"
+        />
+      </div>
+      <div class="col-lg-6">
+        <p class="lead">
+          <b><i>Ingredients</i></b
+          ><br />
+          {% for ingredient in ingredients %} 
+          {{ingredient}}<br />
+          {% endfor %}
+        </p>
+      </div>
+      <div>
+        <h4><i>Method</i></h4>
+        <p>{{recipe.method}}</p>
+      </div>
+    </div>
+    {% if user.role == 'Admin' or user.role == 'Manager' %}
+    <div class="gap-2 d-md-flex justify-content-md-start mb-4">
+      <a
+        class="btn btn-outline-secondary btn-lg px-3 me-md-3"
+        href="{% url 'update-recipe' recipe.id %}"
+        >Update</a
+      >
+      <a
+        class="btn btn-outline-secondary btn-lg px-3"
+        href="{% url 'delete-recipe' recipe.id %}"
+        >Delete</a
+      >
+    </div>
+    {% endif %}
+  </div>
+  <br>
+
+  
+  <div class="list-group">
+    <h4><i>Reviews</i></h4>
+    {% for review in reviews %}
+    <div href="#" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h6 class="mb-1">{{review.comment_by.name}}</h6>
+        <small class="text-muted">{{review.date_created}}</small>
+      </div>
+      <small class="text-muted">{{review}}</small>
+    </div>
+    <br />
+    {% endfor %}
+    
+    <form class="" method="post" action="">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="review"
+          name="review"
+          placeholder="Review Recipe"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content%}

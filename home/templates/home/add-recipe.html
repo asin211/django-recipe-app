@@ -1,0 +1,76 @@
+{% extends 'base.html' %} 
+{% load static %}    
+{% block title %}Add Recipe{% endblock title %}       
+{% block content %} 
+
+  <div class="class= min-vh-100">
+    <h2 class="m-4"><i>Recipe Details</i></h2>
+     
+    <form class="mx-4" method="post" action="" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="name" class="form-label fs-5"><i>Recipe Name</i></label>
+       {{form.name}}
+      </div>
+
+      <div class="mb-3">
+        <label for="desc" class="form-label fs-5"><i>Ingredients</i></label>
+        {{form.ingredients}}
+      </div>
+
+      <div class="mb-3">
+        <label for="desc" class="form-label fs-5"><i>Method</i></label>
+        {{form.method}}
+      </div>
+      <div class="mb-3">
+        {{form.thumbnail}}
+      </div>
+
+      <button type="submit" class="btn btn-primary ">Submit</button>
+    </form>
+
+  
+    <!-- <form class="mx-4" method="post" action="" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="name" class="form-label">Recipe Name</label>
+        <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        required
+       />
+      </div>
+
+      <div class="mb-3">
+        <label for="desc" class="form-label">Ingredients</label>
+        <textarea
+          class="form-control"
+          id="ingredients"
+          name="ingredients"
+          rows="9"
+          required
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="desc" class="form-label">Method</label>
+        <textarea
+          class="form-control"
+          id="method"
+          name="method"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="file" id="myFile" name="filename" required/>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form> -->
+  </div>
+
+{% endblock content%}
+

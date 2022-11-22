@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+{% load static %}    
+{% block title %} Delete {% endblock title %}       
+{% block content %} 
+
+  <div class="class= min-vh-100 m-4">
+    <h2><i>Delete </i></h2>
+    <form action="" method="post">
+      {% csrf_token %}
+      <p class="lead">Are you sure you want to delete "<b>{{obj}}</b>" ?</p>
+      <input class="btn btn-primary" type="submit" value="Confirm">
+      <a class="btn btn-primary ms-4" href="{{request.META.HTTP_REFERER}}">Go Back</a>
+    </form>
+  </div>
+
+{% endblock content%}

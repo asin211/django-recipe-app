@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Contact Queries{% endblock title %} 
+{% block content %}
+
+<div class="class= min-vh-100 container">
+  <h3 class="my-4 mx-2"><i>Contact Queries</i></h3>
+
+  <div class="list-group">
+    {% for contact in contacts %}
+    <div class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><i>{{contact.name}}</i></h5>
+        <small class="text-muted">{{contact.date_created}}</small>
+      </div>
+      <p class="mb-1">{{contact.desc}}</p>
+      <small class="text-muted">Email: {{contact.email}}</small><br>
+      <small class="text-muted">Phone: {{contact.phone}}</small>
+      
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content%}
